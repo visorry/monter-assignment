@@ -1,12 +1,15 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const authRoutes = require('./routes/authRoute')
+const dotenv = require('dotenv');
+
+dotenv.config(); 
 const app = express();
 const port = 3000;
 
 app.use(express.json());
 
-mongoose.connect('mongodb://localhost:27017/your-database');
+mongoose.connect(process.env.DB_URI);
 
 // Routes
 app.use('/auth', authRoutes);
